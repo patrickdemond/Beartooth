@@ -108,18 +108,21 @@ class post extends \cenozo\service\post
             }
             catch( \cenozo\exception\runtime $e )
             {
-              throw lib::create( 'exception\notice',
-                sprintf(
-                  'The interview instance was successfully created, however, there was an error while granting '.
-                  'the instance access to Pine.<br/><br/>'.
-                  'Please <a target="pine" href="%s/user/view/name=%s">click here</a> and make sure the user '.
-                  'has been granted the "machine" role.',
-                  $db_pine_application->url,
-                  $db_user->name
-                ),
-                __METHOD__,
-                $e
-              );
+              if( !preg_match( '/409 when trying POST request to Pine/', $e->get_raw_message() ) )
+              {
+                throw lib::create( 'exception\notice',
+                  sprintf(
+                    'The interview instance was successfully created, however, there was an error while granting '.
+                    'the instance access to Pine.<br/><br/>'.
+                    'Please <a target="pine" href="%s/user/view/name=%s">click here</a> and make sure the user '.
+                    'has been granted the "machine" role.',
+                    $db_pine_application->url,
+                    $db_user->name
+                  ),
+                  __METHOD__,
+                  $e
+                );
+              }
             }
           }
         }
