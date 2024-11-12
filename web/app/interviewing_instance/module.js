@@ -63,13 +63,6 @@ cenozoApp.defineModule({
         type: "string",
         isConstant: function($state, model) { return !model.isRole("administrator"); },
       },
-      password: {
-        title: "Password",
-        type: "string",
-        regex: "^((?!(password)).){8,}$", // length >= 8 and can't have "password"
-        isExcluded: "view",
-        help: 'Passwords must be at least 8 characters long and cannot contain the word "password"',
-      },
       interviewer_user_id: {
         title: "Interviewer",
         type: "lookup-typeahead",

@@ -40,7 +40,6 @@ class post extends \cenozo\service\post
         $db_user->first_name = $db_site->name.' interviewing instance';
         $db_user->last_name = $post_object->username;
         $db_user->active = true;
-        $db_user->password = $post_object->password; // hashed in database\user
         $db_user->save();
       }
 
