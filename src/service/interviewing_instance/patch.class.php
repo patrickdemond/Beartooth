@@ -52,6 +52,7 @@ class patch extends \cenozo\service\patch
           try
           {
             $db_user->active = $active;
+            if( $active ) $db_user->login_failures = 0; // also reset the login failures if making active
             $this->status->set_code( 200 );
           }
           catch( \cenozo\exception\argument $e )
