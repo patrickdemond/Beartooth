@@ -43,6 +43,7 @@ class sample extends \cenozo\business\report\base_report
     $home_data_sel->add_table_column( 'interview', 'participant_id' );
     $home_data_sel->add_table_column( 'interview', 'end_datetime', 'interview_datetime' );
     $home_data_sel->add_table_column( 'appointment', 'datetime', 'appointment_datetime' );
+    $home_data_sel->add_table_column( 'appointment', 'outcome' );
     $home_data_sel->add_table_column( 'qnaire', 'completed_event_type_id', 'event_type_id' );
     $home_data_sel->add_table_column( 'interview_assignment_total', 'total', 'assignment_count' );
     $home_data_sel->add_table_column( 'user', 'name', 'interviewer' );
@@ -72,6 +73,7 @@ class sample extends \cenozo\business\report\base_report
     $site_data_sel->add_table_column( 'interview', 'participant_id' );
     $site_data_sel->add_table_column( 'interview', 'end_datetime', 'interview_datetime' );
     $site_data_sel->add_table_column( 'appointment', 'datetime', 'appointment_datetime' );
+    $site_data_sel->add_table_column( 'appointment', 'outcome' );
     $site_data_sel->add_table_column( 'qnaire', 'completed_event_type_id', 'event_type_id' );
     $site_data_sel->add_table_column( 'interview_assignment_total', 'total', 'assignment_count' );
     $site_data_sel->add_table_column( 'user', 'name', 'interviewer' );
@@ -128,6 +130,7 @@ class sample extends \cenozo\business\report\base_report
       'Home Interview Date',
       false
     );
+    $select->add_column( 'home_data.outcome', 'Home Interview Outcome', false );
     $select->add_column( 'home_data.assignment_count', 'Home Assignments', false );
     $select->add_column(
       'IF( home_data.interview_datetime IS NOT NULL, "(exported)", home_data.interviewer )',
@@ -147,6 +150,7 @@ class sample extends \cenozo\business\report\base_report
       'Site Interview Date',
       false
     );
+    $select->add_column( 'site_data.outcome', 'Site Interview Outcome', false );
     $select->add_column( 'global_note', 'Special Note' );
 
     // do not include excluded or withdrawn participants
