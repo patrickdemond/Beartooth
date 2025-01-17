@@ -18,6 +18,10 @@ cenozoApp.defineModule({
         name: {
           title: "Name",
         },
+        use_participant_timezone: {
+          title: "Use Participant's Timezone",
+          type: "boolean",
+        },
         color: {
           title: "Colour",
         },
@@ -37,6 +41,11 @@ cenozoApp.defineModule({
         title: "Name",
         type: "string",
         format: "identifier",
+      },
+      use_participant_timezone: {
+        title: "Use Participant's Timezone",
+        type: "boolean",
+        help: "Whether to send appointment reminders in the participant's timezone or the site's timezone.",
       },
       color: {
         title: "Colour",

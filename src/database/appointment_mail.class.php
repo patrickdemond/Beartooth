@@ -57,10 +57,21 @@ class appointment_mail extends \cenozo\database\record
   {
     $mail_class_name = lib::get_class_name( 'database\mail' );
 
+    $db_appointment_type = $db_appointment->get_appointment_type();
     $db_participant = $db_appointment->get_interview()->get_participant();
+    $db_address = $db_appointment->get_address();
+    if( is_null( $db_address ) ) $db_address = $db_participant->get_first_address();
     $db_site = $db_participant->get_effective_site();
     $datetime = clone $db_appointment->datetime;
-    $datetime->setTimezone( $db_site->get_timezone_object() );
+
+    // if the appointment type is setup to use the participant's TZ then use it, otherwise use the site's TZ
+    $datetime->setTimezone(
+      !is_null( $db_appointment_type ) &&
+      $db_appointment_type->use_participant_timezone &&
+      !is_null( $db_address ) ?
+      $db_address->get_timezone_object() :
+      $db_site->get_timezone_object()
+    );
 
     if( !is_null( $db_participant->email ) )
     {
