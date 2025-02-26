@@ -231,6 +231,28 @@ class module extends \cenozo\service\base_calendar_module
       $select->add_table_column( 'address', 'city' );
       $select->add_table_column( 'region', 'name', 'onyx' == $db_interviewing_instance->type ? 'province' : 'region' );
       $select->add_table_column( 'address', 'postcode' );
+      if( 'onyx' != $db_interviewing_instance->type )
+      {
+        $select->add_table_column( 'address', 'international' );
+        $select->add_table_column( 'address', 'international_region' );
+        $select->add_table_column( 'address', 'international_country_id' );
+        $select->add_table_column( 'address', 'timezone_offset' );
+        $select->add_table_column( 'address', 'daylight_savings' );
+        $select->add_table_column( 'address', 'january' );
+        $select->add_table_column( 'address', 'february' );
+        $select->add_table_column( 'address', 'march' );
+        $select->add_table_column( 'address', 'april' );
+        $select->add_table_column( 'address', 'may' );
+        $select->add_table_column( 'address', 'june' );
+        $select->add_table_column( 'address', 'july' );
+        $select->add_table_column( 'address', 'august' );
+        $select->add_table_column( 'address', 'september' );
+        $select->add_table_column( 'address', 'october' );
+        $select->add_table_column( 'address', 'november' );
+        $select->add_table_column( 'address', 'december' );
+        $select->add_table_column( 'address', 'note', 'address_note' );
+      }
+
       $select->add_table_column( 'participant', 'IFNULL( email, "" )', 'email', false );
       if( 'onyx' == $db_interviewing_instance->type )
       {
